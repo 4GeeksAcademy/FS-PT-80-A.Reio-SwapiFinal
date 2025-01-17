@@ -1,45 +1,93 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			url: 'https://www.swapi.tech/api',
+			people: [],
+			person: {},
+			planets: [],
+			planet: {},	
+			ships: [],
+			ship: {}	
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			// Cargar la lista de personajes
+			loadCast: async () => {
+				try {
+					const resp = await fetch(getStore().url + '/people');
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ people: data.results });
+				} catch (error) {
+					console.error(error);
+				}
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+
+			loadPerson: async (uid) => {
+				try {
+					const resp = await fetch(getStore().url + '/people/' + uid);
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ person: data.result });
+				} catch (error) {
+					console.error(error);
+				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+			// ________________
 
-				//reset the global store
-				setStore({ demo: demo });
+			loadPlanets: async () => {
+				try {
+					const resp = await fetch(getStore().url + '/planets');
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ planets: data.results });
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+			loadPlanet: async (uid) => {
+				try {
+					const resp = await fetch(getStore().url + '/planets/' + uid);
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ planet: data.result });
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+			// _____________
+
+			loadShips: async () => {
+				try {
+					const resp = await fetch(getStore().url + '/starships/');
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ ships: data.results });
+				} catch (error) {
+					console.error(error);
+				}
+			},
+
+			loadShip: async (uid) => {
+				try {
+					const resp = await fetch(getStore().url + '/starships/' + uid);
+					if (!resp.ok) throw new Error('Error fetching data');
+					const data = await resp.json();
+					console.log(data);
+					setStore({ ship: data.result });
+				} catch (error) {
+					console.error(error);
+				}
 			}
-		}
-	};
-};
 
+		}
+	}
+}
 export default getState;

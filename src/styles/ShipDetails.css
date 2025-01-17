@@ -1,0 +1,57 @@
+.ship-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.ship-card {
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+}
+
+.ship-card-img-top {
+    border-radius: 15px;
+    max-height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.ship-h2.text-warning {
+    color: #ffcc00;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.ship-p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.ship-spinner-border {
+    margin-top: 20px;
+    color: #ffcc00;
+}
+
+.ship-text-light {
+    font-size: 1.5rem;
+    color: #bbb;
+}
+
+.ship-text-center {
+    text-align: center;
+}
+
+.ship-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
